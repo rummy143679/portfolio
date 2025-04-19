@@ -1,25 +1,52 @@
 <template>
   <section class="hero">
     <div class="hero-content">
-      <h1 class="fade-in">Hello there!</h1>
-      <p class="fade-in">
-        I aspire to work for an organization that extends opportunities for extensive learning 
-        and skill enhancement to all its employees by providing a professional environment. 
-        I see myself contributing to explore my maximum potential as a self-motivated, 
-        energetic professional and utilize my skills in the organization.
-      </p>
+      <h1 class="fade-in">{{ home.title }}</h1>
+      <p>{{home.description}}</p>
 
       <div class="social-icons fade-in">
-        <a href="https://www.linkedin.com" target="_blank" class="icon">
-          <i class="fab fa-linkedin"></i>
-        </a>
-        <a href="https://github.com" target="_blank" class="icon">
-          <i class="fab fa-github"></i>
+        <a
+          v-for="(link, index) in socialLinks"
+          :key="index"
+          :href="link.url"
+          target="_blank"
+          class="icon"
+          rel="noopener noreferrer"
+        >
+          <i :class="link.icon"></i>
         </a>
       </div>
     </div>
   </section>
 </template>
+
+<script>
+export default {
+  name: "HomeView",
+  data() {
+    return {
+      home: {
+        title: "Junior Developer",
+        description:
+          "I aspire to work for an organization that extends opportunities for extensive learning and skill enhancement to all its employees by providing a professional environment. I see myself contributing to explore my maximum potential as a self-motivated, energetic professional and utilize my skills in the organization.",
+      },
+      socialLinks: [
+        {
+          name: "LinkedIn",
+          url: "https://www.linkedin.com/in/mattedaramesh/",
+          icon: "fab fa-linkedin",
+        },
+        {
+          name: "GitHub",
+          url: "https://github.com",
+          icon: "fab fa-github",
+        },
+      ],
+    };
+  },
+  
+}
+</script>
 
 <style scoped>
 /* Hero Section Styling */
@@ -27,8 +54,6 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 90vh;
-  background: #f8f9fa;
   color: #333;
   text-align: left;
   padding: 2rem;
@@ -41,14 +66,14 @@
 /* Heading and Paragraph */
 h1 {
   font-size: 2.5rem;
-  color: #222;
+  color: #898a8a;
   margin-bottom: 1rem;
   animation: fadeIn 1s ease-in-out;
 }
 
 p {
   font-size: 1.2rem;
-  color: #555;
+  color: #898a8a;
   line-height: 1.6;
   animation: fadeIn 1.5s ease-in-out;
 }

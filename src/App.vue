@@ -1,18 +1,25 @@
 <template>
-  <nav class="navbar">
-    <div class="logo">Matteda Ramesh.</div>
-    <div class="burger" :class="{ open: isOpen }" @click="toggleMenu">
-      <span></span>
-      <span></span>
-      <span></span>
-    </div>
-    <ul class="nav-links" :class="{ open: isOpen }">
-      <li v-for="(link, index) in links" :key="index" @click="closeMenu">
-        <RouterLink :to="link.path">{{ link.name }}</RouterLink>
-      </li>
-    </ul>
-  </nav>
-  <router-view/>
+<div style="height:100vh; display:flex; flex-direction:column;">
+  <header style="height: 10vh;">
+    <nav class="navbar">
+      <div class="logo">Matteda Ramesh.</div>
+      <div class="burger" :class="{ open: isOpen }" @click="toggleMenu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+      <ul class="nav-links" :class="{ open: isOpen }">
+        <li v-for="(link, index) in links" :key="index" @click="closeMenu">
+          <RouterLink :to="link.path" :style="{ 'text-decoration': $route.fullPath == link.path ? 'underline' :'none' }">{{ link.name }}</RouterLink>
+        </li>
+      </ul>
+    </nav>
+   </header>
+   <div style="overflow:auto;height:90vh">
+    <router-view/>
+   </div>
+</div>
+
 </template>
 
 <script>
@@ -20,13 +27,16 @@ export default {
   data() {
     return {
       links: [
-        { name: 'Home', path: '/' },
-        { name: 'About', path: '/about' },
-        { name: 'Skills', path: '/skills' },
-        { name: 'Projects', path: '/projects' },
-        { name: 'Contact', path: '/contact' },
+        { name: 'Home', path: '/', active: true },
+        { name: 'About', path: '/about',active: false },
+        { name: 'Skills', path: '/skills', active: false},
+        { name: 'Projects', path: '/projects',active: false },
+        { name: 'Contact', path: '/contact',active: false },
       ],
       isOpen: false,
+      lastScrollY: 0,
+      scrollDirection: "down",
+      isScrolling: false, 
     };
   },
   methods: {
@@ -36,6 +46,17 @@ export default {
     closeMenu() {
       this.isOpen = false;
     },
+    handleScroll(e) {
+      console.log(e);
+      if (e.offsetHeight + e.scrollTop >= e.scrollHeight) {
+          console.log("scrolled to bottom");
+      }
+    },
+  },
+  mounted() {
+    const body = document.querySelector('body');
+    console.log(this.$route);
+    body.addEventListener('scroll', this.handleScroll);
   },
 }
 </script>
@@ -48,12 +69,8 @@ export default {
   padding: 1rem 2rem;
   background: #898a8a;
   color: white;
-  position: fixed;
   width: 100vw;
   max-width: 100%;
-  top: 0;
-  left: 0;
-  z-index: 1000;
   box-sizing: border-box;
 }
 
