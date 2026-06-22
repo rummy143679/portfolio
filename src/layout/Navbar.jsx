@@ -28,6 +28,10 @@ function Navbar() {
     }, 300); // match animation duration
   };  
 
+  const handleContactMe = () => {
+    window.location.href = "#contact";
+  }
+
 
   useEffect(() => {
     const handleScroll = () => {
@@ -66,7 +70,7 @@ function Navbar() {
         </div>
         {/* CTA buttons */}
         <div className="hidden md:flex items-center gap-2">
-          <Button size="sm">Contact me</Button>
+          <Button size="sm" onClick={() => handleContactMe()}>Contact me</Button>
         </div>
 
         {/* Mobile menu button */}

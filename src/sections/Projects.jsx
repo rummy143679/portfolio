@@ -4,6 +4,7 @@ import { FaGithub } from "react-icons/fa";
 import AnimatedBorderButton from "../components/AnimatedBorderButton";
 import MultiCom from "../assets/multi-com.png";
 import GroceryApp from "../assets/grocery-app.png";
+import Nomichi from "../assets/nomichi.png"
 
 const projects = [
   {
@@ -40,6 +41,25 @@ const projects = [
     ],
     link: "https://rummy-grocery-app.netlify.app/",
     github: "https://github.com/rummy143679/grocery-client",
+  },
+  {
+    title: "Nomichi Trip Desk",
+    description:
+      "A travel enquiry management platform designed for travel consultants and administrators to manage customer enquiries, assign managers, track leads, and streamline trip planning workflows. Features role-based authentication, enquiry management, secure access control, AI-powered travel consultation integration, and a responsive modern dashboard built with Next.js and Supabase.",
+    images: Nomichi,
+    tags: [
+      "Next.js",
+      "TypeScript",
+      "Supabase",
+      "Tailwind CSS",
+      "Python",
+      "FastApis",
+      "Ollama3",
+      "AI Integration",
+      "Responsive Design",
+    ],
+    link: "https://github.com/rummy143679/nomichi",
+    github: "https://nomichi-lac.vercel.app/",
   },
 ];
 
